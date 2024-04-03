@@ -29,6 +29,18 @@ def get_minor_matrix(mat: List[List[int]], i: int, j: int) -> List[List[int]]:
     :return: minor matrix
     """
     ...
+    minor = []
+    for row in range(len(mat)):
+        if row == i:
+            continue
+        columns = []
+        for column in range(len(mat[0])):
+            if column == j:
+                continue
+            columns.append(mat[row][column])
+        if columns:
+            minor.append(columns)
+    return minor
 
 
 def matrix_determinant(mat: List[List[int]]) -> int:
@@ -158,3 +170,6 @@ def test_matrix_determinant_incorrect(incorrect_matrix):
     with pytest.raises(ValueError) as excinfo:
         matrix_determinant(incorrect_matrix)
     assert "Matrix is not square!" in str(excinfo.value)
+
+
+# if __name__ == "__main__":
